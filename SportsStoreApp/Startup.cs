@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 using SportsStoreApp.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using SportsStoreApp.Models.Concrete;
+using SportsStoreApp.Models.Abstract;
+using Microsoft.AspNetCore.Routing;
 
 namespace SportsStoreApp
 {
@@ -25,12 +28,20 @@ namespace SportsStoreApp
 
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddDbContext<SportsStoreDbContext>(cfg => {
-        cfg.UseSqlServer(Configuration["ConnectionStrings:SportsStoreConnection"], sqlServerOptionsAction: sqlOptions => {
+      services.AddMvc();
+
+      services.AddDbContext<SportsStoreDbContext>(cfg =>
+      {
+        cfg.UseSqlServer(Configuration["ConnectionStrings:SportsStoreConnection"], sqlServerOptionsAction: sqlOptions =>
+        {
           sqlOptions.EnableRetryOnFailure(maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
         });
         cfg.UseLoggerFactory(LoggerFactory.Create(cfg => { cfg.AddConsole(); })).EnableSensitiveDataLogging();
       });
+
+      services.AddScoped<IProductRepository, EFProductRepository>();
+      services.AddScoped<IOrderRepository, EFOrderRepository>();
+      services.AddScoped<IOrderDetailRepository, EFOrderDetailRepository>();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
@@ -53,14 +64,17 @@ namespace SportsStoreApp
 
       app.UseRouting();
 
-      app.UseEndpoints(endpoints =>
+      app.UseEndpoints(ConfigureRoutes);
+    }
+
+    private void ConfigureRoutes(IEndpointRouteBuilder routerBuilder)
+    {
+      routerBuilder.MapControllers();
+      routerBuilder.MapGet("/", async context =>
       {
-        endpoints.MapGet("/", async context =>
-              {
-            await context.Response.WriteAsync("<div style='background-color:Cornflowerblue; text-align: center; color: White;'>" +
-              "<h1>Sports Store Site Under Construction</h1>" +
-              "</div>");
-          });
+        await context.Response.WriteAsync("<div style='background-color:Cornflowerblue; text-align: center; color: White;'>" +
+          "<h1>Sports Store Site Under Construction</h1>" +
+          "</div>");
       });
     }
   }
