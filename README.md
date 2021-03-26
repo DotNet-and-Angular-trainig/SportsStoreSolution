@@ -30,3 +30,5 @@
 - 02DbContext
 - 03DotNetEFTool
 - 04SportsStoreSeedData
+- 05CreateRepository
+- 06API

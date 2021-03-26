@@ -33,11 +33,22 @@ namespace SportsStoreApp
       });
     }
 
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
     {
       if (env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
+      }
+
+      using (var scope = app.ApplicationServices.CreateScope())
+      {
+        SportsStoreDbContext context = scope.ServiceProvider.GetRequiredService<SportsStoreDbContext>();// will get the SportsStoreDbContext object
+        var createDatabase = context.Database.EnsureCreated();
+        if (createDatabase)
+        {
+          SportsStoreSeedData.PopulateSportsStore(context);
+          logger.LogInformation($"***SportsStoreSeedData Called, '{context.Products.Count()}' - Products Added\n'{context.Orders.Count()}' - Orders Added\n'{context.OrderDetails.Count()}' - OrderDetails Added***");
+        }
       }
 
       app.UseRouting();
@@ -46,7 +57,9 @@ namespace SportsStoreApp
       {
         endpoints.MapGet("/", async context =>
               {
-            await context.Response.WriteAsync("Hello World!");
+            await context.Response.WriteAsync("<div style='background-color:Cornflowerblue; text-align: center; color: White;'>" +
+              "<h1>Sports Store Site Under Construction</h1>" +
+              "</div>");
           });
       });
     }
