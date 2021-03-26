@@ -32,3 +32,4 @@
 - 04SportsStoreSeedData
 - 05CreateRepository
 - 06API
+- 07Swagger
