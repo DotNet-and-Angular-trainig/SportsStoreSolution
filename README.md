@@ -23,3 +23,4 @@
 
 - 01ModelEntites
 - 02DbContext
+- 03SportsStoreSeedData

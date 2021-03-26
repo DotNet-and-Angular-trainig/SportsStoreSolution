@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SportsStoreApp.Models.Entities
 {
-  public class OrderDetails
+  public class OrderDetail
   {
     [Key]
     [Column (Order = 1)]
