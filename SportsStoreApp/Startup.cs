@@ -42,6 +42,10 @@ namespace SportsStoreApp
       services.AddScoped<IProductRepository, EFProductRepository>();
       services.AddScoped<IOrderRepository, EFOrderRepository>();
       services.AddScoped<IOrderDetailRepository, EFOrderDetailRepository>();
+
+      services.AddSwaggerGen(cfg => {
+        cfg.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title ="SportsStore", Version = "v1" });
+      });
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
@@ -50,6 +54,11 @@ namespace SportsStoreApp
       {
         app.UseDeveloperExceptionPage();
       }
+
+      app.UseSwagger();
+      app.UseSwaggerUI(cfg => {
+        cfg.SwaggerEndpoint("/swagger/v1/swagger.json", "SportsStore v1");
+      });
 
       using (var scope = app.ApplicationServices.CreateScope())
       {
