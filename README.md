@@ -17,6 +17,11 @@
 
 #### dotnet ef tools for the app
 
+- dotnet tool update --global dotnet-ef (optional --version 5.0.4)
+- dotnet ef commands
+  - dotnet ef database update (will create the database if it does not exists, if it exists it will update it with the latest changes)
+  - dotnet ef migrations add InitialDb -o Models\Migrations (will create class for the database with the tables and the constraints)
+  - dotnet ef migrations remove (will remove the migrations)
 
 
 #### Git Branches
