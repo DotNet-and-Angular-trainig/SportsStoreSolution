@@ -23,4 +23,5 @@
 
 - 01ModelEntites
 - 02DbContext
-- 03SportsStoreSeedData
+- 03DotNetEFTool
+- 04SportsStoreSeedData
