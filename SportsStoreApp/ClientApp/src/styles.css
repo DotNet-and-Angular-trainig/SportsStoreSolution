@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+.dataPlacement {
+  padding-top: 4em;
+}
+
+.bg-purple {
+  background-color: mediumpurple;
+}
+
+.bg-navyBlue {
+  background-color: #12466b;
+}
+
+.bg-adminNavbar {
+  background-color: #6b1219;
+}
+
+.bg-productTableNavbar {
+  background-color: #165481;
+}
+
+.bg-productEditorNavbar {
+  background-color: #196b12;
+}
+
+.bg-orderTableNavbar{
+  background-color: seagreen;
+}

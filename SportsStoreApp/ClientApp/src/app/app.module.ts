@@ -3,9 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 
+import { NavHeaderComponent } from './nav/navheader.component';
+import { NavFooterComponent } from './nav/navfooter.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, NavHeaderComponent, NavFooterComponent
   ],
   imports: [
     BrowserModule
