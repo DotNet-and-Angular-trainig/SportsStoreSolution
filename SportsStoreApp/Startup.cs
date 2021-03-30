@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using SportsStoreApp.Models.Concrete;
 using SportsStoreApp.Models.Abstract;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 
 namespace SportsStoreApp
 {
@@ -46,6 +47,10 @@ namespace SportsStoreApp
       services.AddSwaggerGen(cfg => {
         cfg.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "SportsStore", Version = "v1" });
       });
+
+      services.AddSpaStaticFiles(cfg => {
+        cfg.RootPath = "ClientApp/dist";
+      });
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
@@ -54,6 +59,9 @@ namespace SportsStoreApp
       {
         app.UseDeveloperExceptionPage();
       }
+
+      app.UseStaticFiles();
+      app.UseSpaStaticFiles();
 
       app.UseSwagger();
       app.UseSwaggerUI(cfg => {
@@ -74,6 +82,14 @@ namespace SportsStoreApp
       app.UseRouting();
 
       app.UseEndpoints(ConfigureRoutes);
+
+      app.UseSpa(cfg=> {
+        cfg.Options.SourcePath = "ClientApp";
+        if (env.IsDevelopment())
+        {
+          cfg.UseAngularCliServer(npmScript: "start");
+        }
+      });
     }
 
     private void ConfigureRoutes(IEndpointRouteBuilder routerBuilder)
@@ -81,9 +97,10 @@ namespace SportsStoreApp
       routerBuilder.MapControllers();
       routerBuilder.MapGet("/", async context =>
       {
-        await context.Response.WriteAsync("<div style='background-color:Cornflowerblue; text-align: center; color: White;'>" +
-          "<h1>Sports Store Site Under Construction</h1>" +
-          "</div>");
+        await context.Response.WriteAsync($"<div style='background-color:Cornflowerblue; text-align: center; color: White;'>" +
+          $"<h1>Sports Store Site Under Construction</h1>" +
+          $"Click here for --- <a type='Button' href='/Index.html'>Ng - Sports Store</a>" +
+          $"</div>");
       });
     }
   }
