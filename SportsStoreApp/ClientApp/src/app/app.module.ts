@@ -9,10 +9,13 @@ import { AppComponent } from './app.component';
 
 import { NavModule } from './nav/nav.module';
 
+import { StoreComponent } from './stores/store.component';
+
 @NgModule({
   declarations: [
     AppComponent
     //NavHeaderComponent, NavFooterComponent
+    , StoreComponent
   ],
   imports: [
     BrowserModule, NavModule
