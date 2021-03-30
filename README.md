@@ -57,3 +57,9 @@
 - 12NGNavbarModule
 - 13NgStoresComponent
 - 14NGStoresModule
+- 15NGModelsProduct
+- 16NGEvents
+- 17NGPaging
+- 18NGDirectivePaging
+- 19NGCart
+- 20NGRouting
