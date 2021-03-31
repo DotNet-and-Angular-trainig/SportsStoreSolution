@@ -63,3 +63,7 @@
 - 18NGDirectivePaging
 - 19NGCart
 - 20NGRouting
+- 21NGModelsOrder
+- 22NGCheckout
+- 23NGGuard
+- 24NGRestDatasource
