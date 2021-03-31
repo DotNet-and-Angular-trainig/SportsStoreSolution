@@ -39,6 +39,13 @@ export class StoreComponent {
     this.changePage(1);
   }
 
+
+  get pageCount(): number {
+    const result = Math.ceil(this.productRepository.getProducts(this.selectedCategory).length / this.productsPerPage);
+    console.warn(`pageCount -> ${result}`);
+    return result;
+  }
+
   // this will return a array. array of numbers rather than the number itself (solution)
   get pageNumbers(): number[] {
     const result = Array(Math.ceil(this.productRepository.getProducts(this.selectedCategory).length / this.productsPerPage)).fill(0).map((x, i) => i + 1);

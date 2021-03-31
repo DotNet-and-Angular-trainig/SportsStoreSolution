@@ -30,19 +30,24 @@
       </select>
     </div>
 
+
     <div class="btn-group float-end m-1">
-      <button class="btn btn-outline-primary" *ngFor="let page of pageNumbers"
+      <button class="btn btn-outline-primary" *counter="let page of pageCount"
               [class.active]="page == selectedPage" (click)="changePage(page)">
         {{ page }}
       </button>
     </div>
 
+    <!-- Without counter Directive -->
+    <!--<div class="btn-group float-end m-1">
+    <button class="btn btn-outline-primary" *ngFor="let page of pageNumbers"
+            [class.active]="page == selectedPage" (click)="changePage(page)">
+      {{ page }}
+    </button>
+  </div>-->
+
   </div>
 </div>
-
-
-
-
 
 
 
