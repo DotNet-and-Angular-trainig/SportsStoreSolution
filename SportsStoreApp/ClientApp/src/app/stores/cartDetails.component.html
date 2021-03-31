@@ -25,7 +25,7 @@
         <td class="text-right">{{ line.product.price | currency: 'INR': 'symbol': '2.2-2' }}</td>
         <td class="text-right">{{ line.lineTotal | currency: 'INR': 'symbol': '2.2-2' }}</td>
         <td class="text-center">
-          <button class="btn btn-sm btn-danger" (click)="cart.removeLine(line.product.productId)">Remove</button>
+          <button class="btn btn-sm btn-danger" (click)="cart.removeLine(line.product.productId!)">Remove</button>
         </td>
       </tr>
     </tbody>
@@ -38,6 +38,6 @@
   </table>
 </div>
 <div class="text-center">
-  <button class="btn btn-primary">Continue Shopping</button>
-  <button class="btn btn-secondary" [disabled]="cart.lines.length == 0">Checkout</button>
+  <button class="btn btn-primary" routerLink="/store">Continue Shopping</button>
+  <button class="btn btn-secondary" [disabled]="cart.lines.length == 0" routerLink="/checkout">Checkout</button>
 </div>

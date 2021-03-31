@@ -1,24 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+
+import { NavModule } from './nav/nav.module';
+import { StoreComponent } from './stores/store.component';
+import { StoresModule } from './stores/stores.module';
+import { CartDetailsComponent } from './stores/cartDetails.component';
 
 import { AppComponent } from './app.component';
 
-// Both the components are added to a single module
-//import { NavHeaderComponent } from './nav/navheader.component';
-//import { NavFooterComponent } from './nav/navfooter.component';
-//import { StoreComponent } from './stores/store.component';
-
-import { NavModule } from './nav/nav.module';
-import { StoresModule } from './stores/stores.module';
-
-
 @NgModule({
-  declarations: [
-    AppComponent
-    //NavHeaderComponent, NavFooterComponent, StoreComponent
-  ],
+  declarations: [AppComponent],
   imports: [
-    BrowserModule, NavModule, StoresModule
+    BrowserModule, NavModule, StoresModule,
+    RouterModule.forRoot([
+      { path: 'store', component: StoreComponent },
+      { path: 'cart', component: CartDetailsComponent },
+      { path: '**', redirectTo: '/store' }
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

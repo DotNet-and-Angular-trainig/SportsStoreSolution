@@ -7,7 +7,7 @@
     </span>
     <span *ngIf="cart.itemCount == 0">(empty)</span>
   </small>
-  <button class="btn btn-sm bg-light" [disabled]="cart.itemCount == 0">
+  <button class="btn btn-sm bg-light" [disabled]="cart.itemCount == 0" routerLink="/cart">
     <i class="bi bi-cart4"></i>
   </button>
 </div>
