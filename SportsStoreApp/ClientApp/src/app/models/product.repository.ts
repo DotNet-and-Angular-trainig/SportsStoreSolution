@@ -15,8 +15,8 @@ export class ProductRepository {
           this.products = data;
           this.categories = data.map(p => p.category).filter((c, index, array) => array.indexOf(c) === index).sort() as string[];
         },
-        (err) => { console.log(`Error from dataSource.getProducts().subscribe() -> \n${err}`); },
-        () => { console.log(`dataSource.getProducts().subscribe() -> work completed`); }
+        (err) => { console.log(`Error from dataSource.getProducts().subscribe() -> \n${err}`); }
+        //,() => { console.log(`dataSource.getProducts().subscribe() -> work completed`); }
       );
   }
 

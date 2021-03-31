@@ -1,0 +1,43 @@
+<div class="navbar fixed-top navbar-dark bg-navyBlue text-white">
+  <a class="navbar-brand" href="/ClientApp/Index.html">SPORT STORE (cart details)</a>
+</div>
+
+<div class="m-1">
+  <h2 class="text-center">Your Cart</h2>
+  <table class="table table-bordered table-striped p-1">
+    <thead>
+      <tr>
+        <th>Quantity</th>
+        <th>Product</th>
+        <th class="text-xs-right">Price</th>
+        <th class="text-xs-right">SubTotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="cart.lines.length == 0">
+        <td colspan="4" class="text-center">Your cart is Empty</td>
+      </tr>
+      <tr *ngFor="let line of cart.lines">
+        <td>
+          <input type="number" class="form-control-sm" style="width:5em" [value]="line.quantity" (change)="cart.updateQuantity(line.product, $event.target.value)" />
+        </td>
+        <td>{{ line.product.productName }}</td>
+        <td class="text-right">{{ line.product.price | currency: 'INR': 'symbol': '2.2-2' }}</td>
+        <td class="text-right">{{ line.lineTotal | currency: 'INR': 'symbol': '2.2-2' }}</td>
+        <td class="text-center">
+          <button class="btn btn-sm btn-danger" (click)="cart.removeLine(line.product.productId)">Remove</button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3" class="text-right">Total: </td>
+        <td class="text-right">{{ cart.cartPrice | currency: 'INR': 'symbol': '2.2-2' }}</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+<div class="text-center">
+  <button class="btn btn-primary">Continue Shopping</button>
+  <button class="btn btn-secondary" [disabled]="cart.lines.length == 0">Checkout</button>
+</div>
