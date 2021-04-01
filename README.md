@@ -67,3 +67,4 @@
 - 22NGCheckout
 - 23NGGuard
 - 24NGRestDatasource
+- 25Admin

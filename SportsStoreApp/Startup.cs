@@ -79,6 +79,15 @@ namespace SportsStoreApp
         }
       }
 
+      //setup the CORS
+      app.UseCors(cfg => {
+        cfg.WithOrigins("https://localhost:4200/")
+        .AllowAnyHeader()
+        .AllowAnyOrigin()
+        .AllowAnyMethod();
+      });
+
+
       app.UseRouting();
 
       app.UseEndpoints(ConfigureRoutes);
