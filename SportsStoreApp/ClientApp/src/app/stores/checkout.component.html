@@ -1,0 +1,64 @@
+<div class="navbar fixed-top navbar-dark bg-darkPurple text-white">
+  <a class="navbar-brand" href="/ClientApp/Index.html">SPORT STORE (checkout)</a>
+</div>
+
+<div *ngIf="orderSent" class="m-1 text-center">
+  <h2>Thanks!</h2>
+  <p>Thanks for placing your order.</p>
+  <p>We'll ship your goods as soon as possible.</p>
+  <button class="btn btn-outline-primary" routerLink="/store">Return to Stores</button>
+</div>
+
+<div class="container-fluid row">
+
+  <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 offset-3 card bg-aliceblue">
+    <form class="m-1" #orderForm="ngForm" novalidate (ngSubmit)="submitOrder(orderForm)" *ngIf="!orderSent">
+
+      <div class="form-group">
+        <label>Customer Name:</label>
+        <input type="text" class="form-control" #name="ngModel" name="name" [(ngModel)]="order.name" required />
+        <em *ngIf="name.invalid && name.touched">Please enter a name</em>
+      </div>
+
+      <div class="form-group">
+        <label>City:</label>
+        <input type="text" class="form-control" #city="ngModel" name="city" [(ngModel)]="order.city" required />
+        <em *ngIf="city.invalid && (city.touched || mouseoverOrder)">Please enter a City</em>
+      </div>
+
+      <div class="form-group">
+        <label>State:</label>
+        <input type="text" class="form-control" #state="ngModel" name="state" [(ngModel)]="order.state" required />
+        <em *ngIf="state.invalid && (state.touched || mouseoverOrder)">Please enter a State</em>
+      </div>
+
+      <div class="form-group">
+        <label>Zip:</label>
+        <input type="text" class="form-control" #zip="ngModel" name="zip" [(ngModel)]="order.zip" required />
+        <em *ngIf="zip.invalid && (zip.touched || mouseoverOrder)">Please enter a Zip</em>
+      </div>
+
+      <div class="form-group">
+        <label>Country:</label>
+        <input type="text" class="form-control" #country="ngModel" name="country" [(ngModel)]="order.country" required />
+        <em *ngIf="country.invalid && (country.touched || mouseoverOrder)">Please enter a Country</em>
+      </div>
+
+      <div class="form-group">
+        <label>GiftWrap</label>
+        <input type="checkbox" class="form-check-inline ms-2" #giftwrap="ngModel" name="giftwrap" [(ngModel)]="order.giftwrap" (change)="callGiftWrap($event)" />
+
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-outline-secondary" routerLink="/cart">Back</button>
+        <span (mouseenter)="mouseoverOrder=true" (mouseleave)="mouseoverOrder=false">
+          <button class="btn btn-outline-primary me-1" [disabled]="orderForm.invalid">
+            Complete Order
+          </button>
+        </span>
+      </div>
+
+    </form>
+  </div>
+</div>

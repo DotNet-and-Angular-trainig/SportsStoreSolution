@@ -36,7 +36,7 @@ export class StaticDatasource {
   }
 
   saveOrder(order: Order): Observable<Order> {
-    console.log(JSON.stringify(order));
+    console.log(`From StaticDatasource Order Info: ${JSON.stringify(order)}`);
     return from([order])
   }
 }

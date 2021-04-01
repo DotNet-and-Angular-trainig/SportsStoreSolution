@@ -1,0 +1,23 @@
+input.ng-dirty.ng-invalid {
+  /* border: 2px solid #ff0000; */
+  border: 2px dashed #ff0000;
+}
+
+input.ng-dirty.ng-valid {
+  border: 2px solid #6bc502;
+  /*border: 2px solid maroon;*/
+}
+
+.bg-darkPurple {
+  background: #563d7c;
+}
+
+.bg-aliceblue {
+  background-color: aliceblue;
+}
+
+em {
+  float: right;
+  color: #E05C65;
+  padding-left: 10px;
+}
