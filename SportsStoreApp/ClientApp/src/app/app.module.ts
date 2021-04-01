@@ -19,6 +19,8 @@ import { AppComponent } from './app.component';
       { path: 'store', component: StoreComponent, canActivate: [StoreFirstGuard] },
       { path: 'cart', component: CartDetailsComponent, canActivate: [StoreFirstGuard] },
       { path: 'checkout', component: CheckoutComponent, canActivate: [StoreFirstGuard] },
+      //child
+      { path: 'admin', loadChildren: () => import('./admin/admin.module').then(l => l.AdminModule) },
       { path: '**', redirectTo: '/store' }
     ])
   ],

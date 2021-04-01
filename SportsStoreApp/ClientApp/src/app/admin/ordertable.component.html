@@ -1,0 +1,62 @@
+<div class="navbar fixed-top navbar-dark bg-orderTableNavbar text-white">
+  <a class="navbar-brand ms-1" routerLink="/">SPORT STORE (admin-order)</a>
+</div>
+
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" [(ngModel)]="includeShipped"/>
+    Display Shipped Orders
+  </label>
+</div>
+
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th>CustomerName</th>
+      <th>Zip</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="getOrders().length == 0">
+      <td colspan="5">There are no orders</td>
+    </tr>
+    <ng-template ngFor let-o [ngForOf]="getOrders()">
+      <tr>
+        <td>{{ o.name }}</td>
+        <td>{{ o.zip }}</td>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <td>
+          <button class="btn btn-outline-warning" (click)="markedShipped(o)">Ship</button>
+          <button class="btn btn-outline-danger ms-1" (click)="delete(o.orderId)">Delete</button>
+        </td>
+      </tr>
+    </ng-template>
+
+
+    <!-- The following has display the data from orderdetails instead of cart-->
+    <!--<ng-template ngFor let-o [ngForOf]="getOrders()">
+    <tr>
+      <td>{{ o.name }}</td>
+      <td>{{ o.zip }}</td>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <td>
+        <button class="btn btn-outline-warning" (click)="markedShipped(o)">Ship</button>
+        <button class="btn btn-outline-danger ms-1" (click)="delete(o.orderId)">Delete</button>
+      </td>
+    </tr>
+    <tr *ngFor="let data of o.cart.lines!">
+      <td colspan="2"></td>
+      <td>{{ data.product.productName }}</td>
+      <td>{{ data.quantity }}</td>
+      <td class="text-right">{{ data.product.price | currency: 'INR': 'symbol': '2.2-2' }}</td>
+    </tr>
+    <tr>
+      <td colspan="5" class="text-right">Grand Total: {{ o.cart.cartPrice | currency: 'INR': 'symbol': '2.2-2' }}</td>
+    </tr>
+  </ng-template>-->
+  </tbody>
+</table>

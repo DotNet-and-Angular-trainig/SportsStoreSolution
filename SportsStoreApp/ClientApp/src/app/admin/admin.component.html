@@ -1,0 +1,16 @@
+<div class="navbar fixed-top navbar-dark bg-adminNavbar text-white">
+  <a class="navbar-brand ms-1" routerLink="/">SPORT STORE (admin)</a>
+</div>
+
+<div class="container-fluid row">
+  <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2 ">
+    <div class="d-grid gap-2">
+      <button class="btn btn-outline-primary" routerLink="/admin/main/products">Products</button>
+      <button class="btn btn-outline-info" routerLink="/admin/main/orders">Orders</button>
+    </div>
+  </div>
+
+  <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 col-xxl-10 ">
+    <router-outlet></router-outlet>
+  </div>
+</div>

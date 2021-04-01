@@ -41,8 +41,19 @@ export class RestDatasource {
     return this.http.delete<Product>(`${this.baseUrl}/product/${id}`);
   }
 
+  getOrders(): Observable<Order[]> { return this.http.get<Order[]>(`${this.baseUrl}/order`);}
+
   saveOrder(order: Order): Observable<Order> {
     console.log(`From RestDatasource (Full data with Cart):\n${JSON.stringify(order)}`);
     return from([order]);
-  } 
+    // return this.http.post<Order>(`${this.baseUrl}/order`, order);
+  }
+
+  deleteOrder(id: number): Observable<Order> {
+    return this.http.delete<Order>(`${this.baseUrl}/order/${id}`);
+  }
+
+  updateOrder(order: Order): Observable<Order> {
+    return this.http.put<Order>(`${this.baseUrl}/order/${order.orderId}`, order);
+  }
 }

@@ -29,4 +29,29 @@ export class ProductRepository {
   getProduct = (id: number) => this.products.find(p => p.productId == id) as Product;
 
   getCategories = () => this.categories;
+
+  saveProduct(product: Product) {
+    if (product.productId == null || product.productId === 0) {
+      this.dataSource.saveProduct(product).subscribe(
+        (p: Product) => { this.products.push(p); },
+        (err) => { console.log(`RestDatasource.saveProduct.newProduct error: \n${err}`); }
+      ); // subscribe
+    } else {
+      this.dataSource.updateProduct(product).subscribe(
+        (prod: Product) => {
+          this.products.splice(this.products.findIndex(p => p.productId === product.productId), 1, product);
+        },
+        (err) => { console.log(`RestDatasource.saveProduct.updateProduct error: \n${err}`); }
+      ); // subscribe
+    }
+  }
+
+  deleteProduct(id: number) {
+    this.dataSource.deleteProduct(id).subscribe(
+      (prod: Product) => {
+        this.products.splice(this.products.findIndex(p => p.productId === id), 1);
+      },
+      (err) => { console.log(`RestDatasource.deleteProduct: error: \n${err}`); }
+    );// subscribe
+  }
 }
